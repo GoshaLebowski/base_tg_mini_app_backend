@@ -1,0 +1,67 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AuthModel {
+  message: String
+  user: UserModel
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type DeviceModel {
+  browser: String!
+  os: String!
+  type: String!
+}
+
+type LocationModel {
+  city: String!
+  country: String!
+  latitude: Float!
+  longitude: Float!
+}
+
+type Mutation {
+  clearSessionCookie: Boolean!
+  removeSession(id: String!): Boolean!
+  verifyTgAccount(data: TelegramVerificationInput!): AuthModel!
+}
+
+type Query {
+  findCurrentSession: SessionModel!
+  findProfile: UserModel!
+  findSessionsByUser: [SessionModel!]!
+}
+
+type SessionMetadataModel {
+  device: DeviceModel!
+  ip: String!
+  location: LocationModel!
+}
+
+type SessionModel {
+  createdAt: String!
+  id: ID!
+  metadata: SessionMetadataModel!
+  userId: String!
+}
+
+input TelegramVerificationInput {
+  initData: String!
+}
+
+type UserModel {
+  avatar: String
+  createdAt: DateTime!
+  displayName: String
+  firstName: String!
+  id: ID!
+  lastName: String
+  telegramId: String!
+  updatedAt: DateTime!
+  username: String
+}
